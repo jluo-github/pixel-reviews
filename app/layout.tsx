@@ -1,16 +1,12 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import "./globals.css";
+import NavBar from "@/components/NavBar";
+import { Exo_2 } from "next/font/google";
+import Link from "next/link";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
+const exo2 = Exo_2({
+  weight: ["400", "700"],
+  subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
@@ -24,11 +20,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+    <html lang='en' suppressHydrationWarning>
+      <body className={`${exo2.className}`}>
+        <div className='min-h-screen flex flex-col'>
+          <NavBar />
+
+          <main className='container mx-auto flex-grow'> {children}</main>
+
+          <footer className='flex items-center justify-center text-sm border-t-2 border-gray-300 py-4'>
+            <p className='mr-1'> Game data and images of </p>
+            <Link href='https://rawg.io' target='_blank'>
+              {" "}
+              RAWG{" "}
+            </Link>
+          </footer>
+        </div>
       </body>
     </html>
   );
