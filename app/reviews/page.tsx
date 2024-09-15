@@ -11,12 +11,12 @@ const ReviewsPage = async () => {
 
       <ul className='grid gap-4 md:grid-cols-2 lg:grid-cols-3'>
         {reviews.map((review) => {
-          const { title, date, image, html } = review;
+          const { slug, title, image } = review;
           return (
             <Link
               className='bg-white rounded hover:shadow-lg hover:shadow-violet-500  border-gray-500 border '
-              key={title}
-              href={`/reviews/${title}`}>
+              key={slug}
+              href={`/reviews/${slug}`}>
               <Image src={image} alt={title} width='640' height='360' />
               <h5 className='text-black py-2 text-center'> {title}</h5>
             </Link>
